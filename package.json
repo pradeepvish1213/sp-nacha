@@ -1,0 +1,44 @@
+{
+  "name": "nach2",
+  "description": "nACH is a highly customizable Node.js module exposing a high & low-level API for generating ACH files for use within the ACH network",
+  "version": "0.5.1",
+  "keywords": [
+    "ACH",
+    "file",
+    "Automated Clearing House"
+  ],
+  "contributors": [
+    {
+      "name": "Glen Selle",
+      "email": "glenselle@me.com"
+    },
+    {
+      "name": "Tom Horner",
+      "email": "tom.horner@zipline.co"
+    },
+    {
+      "name": "Yaw Joseph Etse",
+      "email": "yaw.etse@gmail.com",
+      "url": "http://about.me/yawjosephetse"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zipline/nACH.git"
+  },
+  "engines": {
+    "node": ">= 0.10.0"
+  },
+  "scripts": {
+    "test": "NODE_ENV=test ./node_modules/.bin/mocha --reporter spec --recursive"
+  },
+  "dependencies": {
+    "async": "^2.0.1",
+    "lodash": "^4.14.1",
+    "moment": "^2.14.1"
+  },
+  "devDependencies": {
+    "mocha": "latest",
+    "chai": "latest"
+  }
+}
