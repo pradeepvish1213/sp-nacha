@@ -34,11 +34,6 @@ describe('Utils', function(){
 	describe('YYMMDD',function() {
 		it('Must return the current date',function() {
 			let utils = require('./../lib/utils');
-
-			let day = moment().get('date').toString();
-			let year = moment().get('year').toString().slice(-2);
-			let month = (moment().get('month')+1).toString();
-
 			let date = moment().format('YYMMDD');
 			let dateNum = utils.formatDate(new Date());
 

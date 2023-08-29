@@ -1,30 +1,25 @@
 {
-  "name": "nach2",
-  "description": "nACH is a highly customizable Node.js module exposing a high & low-level API for generating ACH files for use within the ACH network",
-  "version": "0.5.1",
+  "name": "sp-nacha",
+  "description": "NACHA file format is a set of instructions that, when uploaded into a bank portal, successfully initiates a batch of ACH payments. NACHA file format is the protocol for structuring those instructions in a way that successfully initiates the payments. NACHA is a highly customizable Node.js module exposing a high & low-level API for generating ACH files for use within the ACH network.",
+  "version": "1.0.0",
   "keywords": [
+    "Seeerportal Nacha",
+    "Dataseers Nacha",
+    "Dataseers ACH",
+    "Dataseers",
     "ACH",
     "file",
     "Automated Clearing House"
   ],
   "contributors": [
     {
-      "name": "Glen Selle",
-      "email": "glenselle@me.com"
-    },
-    {
-      "name": "Tom Horner",
-      "email": "tom.horner@zipline.co"
-    },
-    {
-      "name": "Yaw Joseph Etse",
-      "email": "yaw.etse@gmail.com",
-      "url": "http://about.me/yawjosephetse"
+      "name": "Pradeep Vishwakarma",
+      "email": "pradeepvish1213@gmail.com"
     }
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/zipline/nACH.git"
+    "url": "https://github.com/pradeepvish1213/sp-nacha.git"
   },
   "engines": {
     "node": ">= 0.10.0"
