@@ -1,13 +1,13 @@
-var chai     = require('chai'),
+let chai     = require('chai'),
 	expect   = chai.expect,
 	moment   = require('moment');
 
 describe('Utils', function(){
-
+	let utils = require('./../lib/utils');
 	describe('pad', function() {
 		it('should add pad', function(){
-			var testS = "1991";
-			var testW = '0';
+			let testS = "1991";
+			let testW = '0';
 
 			expect(function(){ utils.pad(testS,testW) }).not.to.throw('Padding not adding');
 		});
@@ -15,9 +15,7 @@ describe('Utils', function(){
 	
 	describe('GenerateString', function(){
 		it("Test to see if object can be passed", function(){
-		var utils = require('./../lib/utils');
-
-		var testObj = {
+		let testObj = {
 
 			testRecord: {
 					name: 'Record Type Code',
@@ -35,14 +33,14 @@ describe('Utils', function(){
 
 	describe('YYMMDD',function() {
 		it('Must return the current date',function() {
-			var utils = require('./../lib/utils');
+			let utils = require('./../lib/utils');
 
-			var day = moment().get('date').toString();
-			var year = moment().get('year').toString().slice(-2);
-			var month = (moment().get('month')+1).toString();
+			let day = moment().get('date').toString();
+			let year = moment().get('year').toString().slice(-2);
+			let month = (moment().get('month')+1).toString();
 
-			var date = moment().format('YYMMDD');
-			var dateNum = utils.formatDate(new Date());
+			let date = moment().format('YYMMDD');
+			let dateNum = utils.formatDate(new Date());
 
 			if(dateNum === date) { expect(function() { utils.formatDate }).not.to.throw('Dates match'); }	
 
@@ -54,14 +52,13 @@ describe('Utils', function(){
 
 	describe('HHMM', function() {
 		it('Must return the current time', function() {
-			var utils = require('./../lib/utils');
 
-			var hour = moment().hour().toString();
-			var minute = moment().minute().toString();
+			let hour = moment().hour().toString();
+			let minute = moment().minute().toString();
 
-			var time = hour + minute;
+			let time = hour + minute;
 
-			var utilsTime = utils.formatTime(new Date());
+			let utilsTime = utils.formatTime(new Date());
 
 			if(utilsTime === time) { expect(function() { utils.formatTime }).not.to.throw('Times match'); }
 			

@@ -30,7 +30,7 @@
     "node": ">= 0.10.0"
   },
   "scripts": {
-    "test": "NODE_ENV=test ./node_modules/.bin/mocha --reporter spec --recursive"
+    "test": "SET NODE_ENV=test&& mocha --reporter spec --recursive"
   },
   "dependencies": {
     "async": "^2.0.1",

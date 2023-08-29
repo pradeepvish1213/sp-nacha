@@ -1,4 +1,4 @@
-var chai     = require('chai')
+let chai     = require('chai')
   , _        = require('lodash')
   , expect   = chai.expect
   , validate = require('../lib/validate');
@@ -6,7 +6,7 @@ var chai     = require('chai')
 describe('Validate', function(){
     describe('Required Fields', function(){
         it('must have contents or an error is thrown', function(){
-            var testObjectOne = {
+            let testObjectOne = {
                 fieldOne: {
                     name: 'fieldOne',
                     width: 6,
@@ -30,7 +30,7 @@ describe('Validate', function(){
 
     describe('Optional Fields', function(){
         it('can be left blank without throwing an error', function(){
-            var testObjectOne = {
+            let testObjectOne = {
                 fieldOne: {
                     name: 'fieldOne',
                     width: 6,
@@ -48,7 +48,7 @@ describe('Validate', function(){
 
     describe('Lengths', function(){
         it('must not exceed their width (length) property', function(){
-            var testObjectOne = {
+            let testObjectOne = {
                 fieldOne: {
                     name: 'fieldOne',
                     width: 6,
@@ -72,7 +72,7 @@ describe('Validate', function(){
 
     describe('Data Types (alpha)', function(){
         it('must correspond to the alpha data type', function(){
-            var testObjectOne = {
+            let testObjectOne = {
                 fieldOne: {
                     name: 'fieldOne',
                     width: 10,
@@ -96,7 +96,7 @@ describe('Validate', function(){
 
     describe('Data Types (alphanumeric)', function(){
         it('must correspond to the alphanumeric data type', function(){
-            var testObjectOne = {
+            let testObjectOne = {
                 fieldOne: {
                     name: 'fieldOne',
                     width: 20,
@@ -120,7 +120,7 @@ describe('Validate', function(){
 
     describe('Data Types (numeric)', function(){
         it('must correspond to the numeric data type', function(){
-            var testObjectOne = {
+            let testObjectOne = {
                 fieldOne: {
                     name: 'fieldOne',
                     width: 15,
@@ -144,7 +144,7 @@ describe('Validate', function(){
 
     describe('Transaction Codes', function(){
         it('must be valid ACH codes', function(){
-            var validTransactionCodes   = ['22','23','24','27','28','29','32','33','34','37','38','39']
+            let validTransactionCodes   = ['22','23','24','27','28','29','32','33','34','37','38','39']
               , invalidTransactionCodes = ['21','25','26','15','82','30','31','35','36','73','18','40'];
 
             // The function should not throw an error since all codes in the `validTransactionCodes` array are valid ACH transaction codes.
@@ -161,7 +161,7 @@ describe('Validate', function(){
     
     describe('Service Class Codes', function(){
         it('must be valid ACH codes', function(){
-            var validServiceClassCodes   = ['200','220','225']
+            let validServiceClassCodes   = ['200','220','225']
               , invalidServiceClassCodes = ['201','222','219'];
 
             // The function should not throw an error since all codes in the `validServiceClassCodes` array are valid ACH service class codes.
@@ -178,7 +178,7 @@ describe('Validate', function(){
 
     describe('Routing Numbers (ABA Numbers)', function(){
         it('must be valid 9-digit routing numbers', function(){
-            var validRoutingNumber   = '281074114'
+            let validRoutingNumber   = '281074114'
               , invalidRoutingNumber = '281074119';
 
             // The function should not throw an error since this is a valid routing number.
