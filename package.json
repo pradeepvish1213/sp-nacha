@@ -1,9 +1,9 @@
 {
   "name": "sp-nacha",
   "description": "NACHA file format is a set of instructions that, when uploaded into a bank portal, successfully initiates a batch of ACH payments. NACHA file format is the protocol for structuring those instructions in a way that successfully initiates the payments. NACHA is a highly customizable Node.js module exposing a high & low-level API for generating ACH files for use within the ACH network.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "keywords": [
-    "Seeerportal Nacha",
+    "Seerportal Nacha",
     "Dataseers Nacha",
     "Dataseers ACH",
     "Dataseers",
