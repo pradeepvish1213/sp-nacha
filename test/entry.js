@@ -55,10 +55,15 @@ describe('Entry', function () {
         });
     });
     describe('Generate ACH File', async function () {
-        it('should create an ACH file successfully', function () {
-            GenerateAchFile([], './test/ach_file').then(result => {
+        it('should create an ACH file successfully', function (done) {
+            GenerateAchFile([], './test/ach_file').then((result) => {
                 expect(result.error).to.equal(false);
                 expect(result.message).to.equal('Successfully writing file.');
+                done();
+            }).catch(error => {
+                expect(true).to.be.false;
+                expect(error.message).to.equal('Successfully writing file.');
+                done();
             })
         })
     })

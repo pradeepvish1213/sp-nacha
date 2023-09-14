@@ -26,8 +26,8 @@ let data = [{
             "receivingDFI": "325272306",
             "DFIAccount": "1347569324910",
             "amount": "697",
-            "idNumber": "501116885ASSA",
-            "individualName": "TEYUNNA L SPEARS",
+            "idNumber": "",
+            "individualName": "Demo",
             "discretionaryData": "00",
             "transactionCode": "22",
             "transactionType": "Credit",
@@ -38,7 +38,7 @@ let data = [{
 
 
 async function GenerateAchFile(queuedTransaction = [], fileFullPath = './') {
-    return new Promise(resolve => {
+    return new Promise((resolve, reject) => {
         let totalRunsFile = [];
         queuedTransaction = queuedTransaction.length > 0 ? queuedTransaction : data;
         queuedTransaction.forEach(({batchChildren, id, ...restField}) => {
@@ -67,15 +67,15 @@ async function GenerateAchFile(queuedTransaction = [], fileFullPath = './') {
                                 entryRecord.addAddenda(addenda);
                             }
                             batch.addEntry(entryRecord);
-                            successRecords.push({row_id: id, message: 'Success'})
+                            successRecords.push({row_id: id, message: 'Success', error: false})
                         } catch (e) {
-                            return resolve({row_id: id, message: e.message})
+                            return reject({row_id: id, message: e.message, error: true})
                         }
                     })
                     try {
                         Nacha2AimPointFile.addBatch(batch);
                     } catch (e) {
-                        return resolve({row_id: id, message: e.message})
+                        return reject({row_id: id, message: e.message, error: true})
                     }
                 })
                 let fileName = `ACH${restField.immediateOrigin}PEIN${Moment().format('YYYYMMDDHHmmssSS')}.ach`;
@@ -87,7 +87,7 @@ async function GenerateAchFile(queuedTransaction = [], fileFullPath = './') {
                                     message: error.message ? error.message : error.stack,
                                     error: true
                                 })
-                                return resolve(totalRunsFile)
+                                return reject(totalRunsFile)
                             }
                             if (errorBatchEntryRecords.length === 0) {
                                 return resolve({
@@ -119,7 +119,7 @@ async function GenerateAchFile(queuedTransaction = [], fileFullPath = './') {
                     })
                 }
             } catch (error) {
-                return resolve({
+                return reject({
                     row_id: id,
                     message: error.message ? error.message : error.stack,
                     error: true
