@@ -41,7 +41,7 @@ describe('Validate', function(){
                 }
             };
 
-            // The expect should not throw an error since the field is not required so an empty string is okay.
+            // To expect should not throw an error since the field is not required so an empty string is okay.
             expect(function () { validate.validateRequiredFields(testObjectOne) }).not.to.throw('fieldOne is a required field but its value is: ');
         });
     });

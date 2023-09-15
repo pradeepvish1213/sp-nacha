@@ -56,7 +56,7 @@ are "columns" called fields. To get a sense for what an ACH file actually looks 
 Each line in an ACH file is always 94 bytes (or 94 characters) long, and the number of lines in an ACH file is required
 to *always* be a multiple of 10. This means, if a file doesn't contain enough rows of data to be a multiple of 10, the
 ACH specification requires you to fill in the remainder of the file with rows of 9s until the number of rows is a
-multiple of 10. Of course, nACH will handle all of this for you, but it's aways good to know why it's doing it.
+multiple of 10. Of course, nACH will handle all of this for you, but it's always good to know why it's doing it.
 
 ## File Anatomy
 
@@ -149,7 +149,7 @@ And batches are added to files much the same way
 file.addBatch(batch);
 ```
 
-Finally to generate the file & write it to a text file
+Finally, to generate the file & write it to a text file
 
 ```js
 // Generate the file (result is a string with the file contents)
