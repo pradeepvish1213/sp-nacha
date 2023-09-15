@@ -4,14 +4,14 @@ const FS = require('fs')
 const NachaAimPoint = require('../index')
 
 let data = [{
-    "id": 32,
+    "id": 1,
     "immediateDestination": "325272306",
     "immediateOrigin": "041215663",
     "immediateDestinationName": "TONGA'S FCU",
     "immediateOriginName": "SUTTON BANK",
     "referenceCode": " ",
     "batchChildren": [{
-        "id": 32,
+        "id": 1,
         "companyName": "SSA TREAS 310",
         "companyIdentification": "9101036669",
         "serviceClassCode": "220",
@@ -22,7 +22,7 @@ let data = [{
         "settlementDate": "2023-08-30 05:30:00",
         "originatingDFI": "041215663",
         "entryChildren": [{
-            "id": 32,
+            "id": 1,
             "receivingDFI": "325272306",
             "DFIAccount": "1347569324910",
             "amount": "697",
@@ -37,14 +37,14 @@ let data = [{
 }]
 
 let dataAddenda = [{
-    "id": 70,
+    "id": 1,
     "immediateDestination": "011002725",
     "immediateOrigin": "011001726",
     "immediateDestinationName": "BERKSHIRE BANK",
     "immediateOriginName": "BROOKLINE BANK",
     "referenceCode": " ",
     "batchChildren": [{
-        "id": 70,
+        "id": 1,
         "companyName": "FF4 US",
         "companyIdentification": "0",
         "serviceClassCode": "220",
@@ -56,7 +56,7 @@ let dataAddenda = [{
         "settlementDate": "2023-09-15 05:30:00",
         "originatingDFI": "011001726",
         "entryChildren": [{
-            "id": 70,
+            "id": 1,
             "receivingDFI": "011002725",
             "DFIAccount": "2234532",
             "amount": "1000",
@@ -66,59 +66,23 @@ let dataAddenda = [{
             "transactionCode": "22",
             "transactionType": "Credit",
             "addendaRecords": [{
-                "id": 44,
-                "queued_transaction_id": 70,
-                "payment_related_information": "ANN000000000000100000928383-23939 XYZ Enterprises",
-                "created_at": "2023-09-13 16:50:51",
-                "modified_at": "2023-09-14 17:50:22"
+                "payment_related_information": "ANN000000000000100000928383-23939 XYZ Enterprises"
             }, {
-                "id": 45,
-                "queued_transaction_id": 70,
-                "payment_related_information": "XYZ Solutions 15 East Place Street",
-                "created_at": "2023-09-13 16:50:51",
-                "modified_at": "2023-09-14 17:50:22"
+                "payment_related_information": "XYZ Solutions 15 East Place Street"
             }, {
-                "id": 46,
-                "queued_transaction_id": 70,
-                "payment_related_information": "SmithTown*PA\\ US*19306\\",
-                "created_at": "2023-09-13 16:50:51",
-                "modified_at": "2023-09-14 17:50:22"
-        }, {
-                "id": 47,
-                "queued_transaction_id": 70,
-                "payment_related_information": "Citibank 01231380104 US",
-                "created_at": "2023-09-13 16:50:51",
-                "modified_at": "2023-09-14 17:50:22"
+                "payment_related_information": "SmithTown*PA\\ US*19306\\"
             }, {
-                "id": 48,
-                "queued_transaction_id": 70,
-                "payment_related_information": "Standard Bank 01121042882 CA",
-                "created_at": "2023-09-13 16:50:51",
-                "modified_at": "2023-09-14 17:50:22"
+                "payment_related_information": "Citibank 01231380104 US"
             }, {
-                "id": 49,
-                "queued_transaction_id": 70,
-                "payment_related_information": "9874654932139872122 Front Street",
-                "created_at": "2023-09-13 16:50:51",
-                "modified_at": "2023-09-14 17:50:22"
+                "payment_related_information": "Standard Bank 01121042882 CA"
             }, {
-                "id": 50,
-                "queued_transaction_id": 70,
-                "payment_related_information": "BetterTown*AB\\ CA*80015\\",
-                "created_at": "2023-09-13 16:50:51",
-                "modified_at": "2023-09-14 17:50:22"
+                "payment_related_information": "9874654932139872122 Front Street"
             }, {
-                "id": 51,
-                "queued_transaction_id": 70,
-                "payment_related_information": "Another international payment",
-                "created_at": "2023-09-13 16:50:51",
-                "modified_at": "2023-09-14 17:50:22"
+                "payment_related_information": "BetterTown*AB\\ CA*80015\\"
             }, {
-                "id": 52,
-                "queued_transaction_id": 70,
-                "payment_related_information": "Bank of Canada 01456456456987988 CA",
-                "created_at": "2023-09-13 16:50:51",
-                "modified_at": "2023-09-14 17:50:22"
+                "payment_related_information": "Another international payment"
+            }, {
+                "payment_related_information": "Bank of Canada 01456456456987988 CA"
             }]
         }]
     }],
@@ -175,8 +139,7 @@ async function GenerateAchFile(queuedTransaction = [], fileFullPath = './') {
                         FS.writeFile(path.join(fileFullPath, fileName), result, function (error) {
                             if (error) {
                                 totalRunsFile.push({
-                                    message: error.message ? error.message : error.stack,
-                                    error: true
+                                    message: error.message ? error.message : error.stack, error: true
                                 })
                                 return reject(totalRunsFile)
                             }
@@ -211,9 +174,7 @@ async function GenerateAchFile(queuedTransaction = [], fileFullPath = './') {
                 }
             } catch (error) {
                 return reject({
-                    row_id: id,
-                    message: error.message ? error.message : error.stack,
-                    error: true
+                    row_id: id, message: error.message ? error.message : error.stack, error: true
                 })
             }
         })
