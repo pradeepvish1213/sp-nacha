@@ -1,5 +1,6 @@
 # SP-NACH
 
+[![Node.js](https://github.com/pradeepvish1213/sp-nacha/actions/workflows/node.js.yml/badge.svg)](https://github.com/pradeepvish1213/sp-nacha/actions/workflows/node.js.yml)
 
 NACHA file format is a set of instructions that, when uploaded into a bank portal, successfully initiates a batch of ACH
 payments. NACHA file format is the protocol for structuring those instructions in a way that successfully initiates the
