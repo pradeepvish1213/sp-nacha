@@ -12,7 +12,7 @@ describe('Utils', function(){
 			expect(function(){ utils.pad(testS,testW) }).not.to.throw('Padding not adding');
 		});
 	});
-	
+
 	describe('GenerateString', function(){
 		it("Test to see if object can be passed", function(){
 		let testObj = {
@@ -26,7 +26,7 @@ describe('Utils', function(){
 					value: '5'
 				}
 			};
-			
+
 			expect( function() { utils.generateString(testObj) }).not.to.throw('Not passing object correctly.');
 		});
 	});
@@ -37,10 +37,10 @@ describe('Utils', function(){
 			let date = moment().format('YYMMDD');
 			let dateNum = utils.formatDate(new Date());
 
-			if(dateNum === date) { expect(function() { utils.formatDate }).not.to.throw('Dates match'); }	
+			if(dateNum === date) { expect(function() { utils.formatDate }).not.to.throw('Dates match'); }
 
             // The formatDate() function never throws an error -- this test isn't accurate
-			//else { expect(function() { utils.formatDate }).to.throw('Dates don\'t match');}	
+			//else { expect(function() { utils.formatDate }).to.throw('Dates don\'t match');}
 
 		});
 	});
@@ -56,7 +56,7 @@ describe('Utils', function(){
 			let utilsTime = utils.formatTime(new Date());
 
 			if(utilsTime === time) { expect(function() { utils.formatTime }).not.to.throw('Times match'); }
-			
+
             // The formatTime() function never throws an error -- this test isn't accurate
             //else { expect(function() { utils.formatTime }).to.throw('Times don\'t match.') }
 		});

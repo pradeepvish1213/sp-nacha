@@ -61,6 +61,7 @@ describe('Entry', function () {
                 expect(result.message).to.equal('Successfully writing file.');
                 done();
             }).catch(error => {
+                console.log('===========',error)
                 expect(true).to.be.false;
                 expect(error.message).to.equal('Successfully writing file.');
                 done();
