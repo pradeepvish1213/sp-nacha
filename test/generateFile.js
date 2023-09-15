@@ -83,7 +83,7 @@ let dataAddenda = [{
                 "payment_related_information": "SmithTown*PA\\ US*19306\\",
                 "created_at": "2023-09-13 16:50:51",
                 "modified_at": "2023-09-14 17:50:22"
-            }, {
+        }, {
                 "id": 47,
                 "queued_transaction_id": 70,
                 "payment_related_information": "Citibank 01231380104 US",
@@ -169,8 +169,7 @@ async function GenerateAchFile(queuedTransaction = [], fileFullPath = './') {
                         return reject({row_id: id, message: e.message, error: true})
                     }
                 })
-                // let fileName = `ACH${restField.immediateOrigin}PEIN${Moment().format('YYYYMMDDHHmmssSS')}.ach`;
-                let fileName = `ACH.ach`;
+                let fileName = `ACH${restField.immediateOrigin}PEIN${Moment().format('YYYYMMDDHHmmssSS')}.ach`;
                 if (successRecords.length > 0) {
                     Nacha2AimPointFile.generateFile(function (result) {
                         FS.writeFile(path.join(fileFullPath, fileName), result, function (error) {

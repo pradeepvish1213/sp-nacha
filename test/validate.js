@@ -158,7 +158,7 @@ describe('Validate', function(){
             });
         });
     });
-    
+
     describe('Service Class Codes', function(){
         it('must be valid ACH codes', function(){
             let validServiceClassCodes   = ['200','220','225']
