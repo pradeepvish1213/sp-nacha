@@ -144,8 +144,8 @@ describe('Validate', function(){
 
     describe('Transaction Codes', function(){
         it('must be valid ACH codes', function(){
-            let validTransactionCodes   = ['22','23','24','27','28','29','32','33','34','37','38','39']
-              , invalidTransactionCodes = ['21','25','26','15','82','30','31','35','36','73','18','40'];
+            let validTransactionCodes   =  ['21', '22', '23', '24', '26', '27', '28', '29', '31', '32', '33', '34', '36', '37', '38', '39', '41', '42', '43', '44', '46', '47', '48', '49', '51', '52', '53', '54', '55', '56']
+              , invalidTransactionCodes = ['25','15','82','30','35','73','18','40'];
 
             // The function should not throw an error since all codes in the `validTransactionCodes` array are valid ACH transaction codes.
             _.forEach(validTransactionCodes, function(code) {
