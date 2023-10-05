@@ -74,7 +74,8 @@ describe('Entry', function () {
                 originalEntryTraceNumber: '000000001234565',
                 originalReceivingDFI: '081000210',
                 returnReasonCode: 'R17',
-                addendaInformation: 'QUESTIONABLE'
+                addendaInformation: 'QUESTIONABLE',
+                dateOfDeath: Moment('2023-10-05').toDate()
             });
 
             expect(entry.getRecordCount()).to.equal(1);
@@ -88,7 +89,8 @@ describe('Entry', function () {
             let addenda2 = new EntryAddendaReturn({
                 originalEntryTraceNumber: '000000001234566',
                 originalReceivingDFI: '081000210',
-                returnReasonCode: 'R20'
+                returnReasonCode: 'R20',
+                dateOfDeath: Moment('2023-10-05').toDate()
             });
 
             entry.addReturnAddenda(addenda2);
