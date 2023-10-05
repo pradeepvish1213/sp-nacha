@@ -109,12 +109,12 @@ describe('Entry', function () {
             GenerateAchFile([], './test/ach_file').then((result) => {
                 expect(result.error).to.equal(false);
                 expect(result.message).to.equal('Successfully writing file.');
-                done();
+                return done()
             }).catch(error => {
                 console.log('===========', error)
                 expect(true).to.be.false;
                 expect(error.message).to.equal('Successfully writing file.');
-                done();
+                return done();
             })
         })
     })
