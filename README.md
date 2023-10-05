@@ -138,6 +138,17 @@ var addenda = new SpNacha.EntryAddenda({
 entry.addAddenda(addenda);
 ```
 
+To add one or more optional return addenda records to an entry
+
+```js
+var addenda = new SpNacha.EntryAddenda({
+    originalEntryTraceNumber: '000000001234566',
+    originalReceivingDFI: '081000210',
+    returnReasonCode: 'R20'
+});
+entry.addReturnAddenda(addenda);
+```
+
 Entries are added to batches like so
 
 ```js
