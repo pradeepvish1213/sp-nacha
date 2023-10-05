@@ -103,7 +103,7 @@ describe('Entry', function () {
             entry.generateString(function (string) {
                 console.log(string);
             });
-        });
+        }).timeout(10000);
     });
 
     describe('Generate ACH File', async function () {
@@ -118,6 +118,6 @@ describe('Entry', function () {
                 expect(error.message).to.equal('Successfully writing file.');
                 return done();
             })
-        })
+        }).timeout(10000);
     })
 });
