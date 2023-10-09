@@ -1,10 +1,7 @@
-let chai = require('chai')
-    , expect = chai.expect
-    , FS = require("fs")
+let FS = require("fs")
     , NachaAimPoint = require("../index")
     , path = require("path")
     , Moment = require("moment")
-    , EntryAddenda = require("../lib/entry-addenda")
 
 let queuedTransaction = [{
     "id": 72,
