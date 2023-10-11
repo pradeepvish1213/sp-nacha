@@ -9,26 +9,27 @@ let chai = require('chai')
 let queuedTransaction = [{
     "id": 70,
     "immediateDestination": "231380104",
-        "immediateOrigin": "121042882",
+    "immediateOrigin": "121042882",
     "immediateDestinationName": "CITADEL FED C U",
-        "immediateOriginName": "WELLS FARGO BANK NA",
-        "referenceCode": " ",
+    "immediateOriginName": "WELLS FARGO BANK NA",
+    "standardEntryClassCode": "IAT",
+    "referenceCode": " ",
     "batchChildren": [{
         "id": 70,
-                "serviceClassCode": "200",
+        "serviceClassCode": "200",
         "iatIndicator": "Iat Indiacator p",
         "foreignExchangeIndicator": "IN",
         "foreignExchangeReferenceIndicator": "3",
         "foreignExchangeReference": "pradeepvish1213",
         "isoDestinationCountryCode": "US",
         "originatorIdentification": "2345432443",
-                "standardEntryClassCode": "IAT",
+        "standardEntryClassCode": "IAT",
         "companyEntryDescription": "SANdeepviS",
         "isoOriginatingCurrencyCode": "IND",
         "isoDestinationCurrencyCode": "CAD",
         "effectiveEntryDate": Moment().toDate(),
         "originatorStatusCode": "",
-                "originatingDFI": "121042882",
+        "originatingDFI": "121042882",
         "entryChildren": [{
             "id": 70,
             "receivingDFI": "231380104",
@@ -53,37 +54,37 @@ let queuedTransaction = [{
             "receivingDFI": "231380104",
             "DFIAccount": "23456787654323",
             "amount": "92345678",
-                        "idNumber": null,
-                        "individualName": "",
-                        "discretionaryData": "",
+            "idNumber": null,
+            "individualName": "",
+            "discretionaryData": "",
             "transactionCode": "21",
             "transactionType": "Credit",
             "traceNumber": '000000001234567',
             "addendaRecords": [{
                 "id": 78,
                 "queued_transaction_id": 70,
-                                "addenda_type_code": "10",
+                "addenda_type_code": "10",
                 "payment_related_information": "UAS123454323454323.008765432345670000000001The abbreviation INDN on a bank sta",
                 "created_at": "2023-10-05 20:35:59",
                 "modified_at": "2023-10-05 20:35:59"
             }, {
                 "id": 78,
                 "queued_transaction_id": 70,
-                                "addenda_type_code": "11",
+                "addenda_type_code": "11",
                 "payment_related_information": "UAS123454323454323.008765432345670000000001The abbreviation INDN on a bank sta",
                 "created_at": "2023-10-05 20:35:59",
                 "modified_at": "2023-10-05 20:35:59"
             }, {
                 "id": 78,
                 "queued_transaction_id": 70,
-                                "addenda_type_code": "12",
+                "addenda_type_code": "12",
                 "payment_related_information": "UAS123454323454323.008765432345670000000001The abbreviation INDN on a bank sta",
                 "created_at": "2023-10-05 20:35:59",
                 "modified_at": "2023-10-05 20:35:59"
             }]
         }]
     }],
-        "recordCount": 1
+    "recordCount": 1
 }]
 
 describe('IAT Records', function () {

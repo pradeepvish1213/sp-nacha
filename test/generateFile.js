@@ -9,6 +9,7 @@ let data = [{
     "immediateOrigin": "041215663",
     "immediateDestinationName": "TONGA'S FCU",
     "immediateOriginName": "SUTTON BANK",
+    "standardEntryClassCode": "PPD",
     "referenceCode": " ",
     "batchChildren": [{
         "id": 1,
@@ -42,6 +43,7 @@ let dataAddenda = [{
     "immediateOrigin": "011001726",
     "immediateDestinationName": "BERKSHIRE BANK",
     "immediateOriginName": "BROOKLINE BANK",
+    "standardEntryClassCode": "IAT",
     "referenceCode": " ",
     "batchChildren": [{
         "id": 1,

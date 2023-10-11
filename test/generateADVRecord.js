@@ -10,6 +10,7 @@ let queuedTransaction = [{
     "immediateDestinationName": "CITADEL FED C U",
     "immediateOriginName": "WELLS FARGO BANK NA",
     "referenceCode": " ",
+    "standardEntryClassCode": "ADV",
     "batchChildren": [{
         "id": 72,
         "companyName": "Company Name, In",
@@ -68,7 +69,7 @@ describe('ADV Records', function () {
             });
         });
     });
-    describe('Create ADV Entry', function () {
+    describe('Create ADV Entry File', function () {
         it('should create an ADV entry successfully', function () {
             queuedTransaction.forEach(({batchChildren, id, ...restField}) => {
                 try {
