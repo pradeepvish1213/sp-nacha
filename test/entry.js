@@ -5,6 +5,7 @@ let chai = require('chai')
     , EntryAddendaReturn = require('../lib/entry-addenda-return')
     , {GenerateAchFile} = require('./generateFile')
     , Moment = require('moment')
+const {GenerateReturnAchFile} = require("./generateReturnACHFile");
 describe('Entry', function () {
     describe('Create Entry', function () {
         it('should create an entry successfully', function () {
@@ -114,6 +115,21 @@ describe('Entry', function () {
                 return done()
             }).catch(error => {
                 console.log('===========', error)
+                expect(true).to.be.false;
+                expect(error.message).to.equal('Successfully writing file.');
+                return done();
+            })
+        }).timeout(10000);
+    })
+
+    describe('Generate Return ACH File', async function () {
+        it('should create an Return ACH file successfully', function (done) {
+            GenerateReturnAchFile([], './test/ach_file').then((result) => {
+                expect(result.error).to.equal(false);
+                expect(result.message).to.equal('Successfully writing file.');
+                return done()
+            }).catch(error => {
+                console.log('==Return ACH=========', error)
                 expect(true).to.be.false;
                 expect(error.message).to.equal('Successfully writing file.');
                 return done();
