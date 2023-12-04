@@ -151,4 +151,63 @@ describe('Entry', function () {
             })
         }).timeout(10000);
     })
+    let MTERecords = [{
+        "id": 20514,
+        "standardEntryClassCode": "MTE",
+        "immediateDestination": "011002725",
+        "immediateOrigin": "121042882",
+        "immediateDestinationName": "BERKSHIRE BANK",
+        "immediateOriginName": "WELLS FARGO BANK NA",
+        "referenceCode": " ",
+        "batchChildren": [{
+            "id": 20514,
+            "companyName": "Compan NamePRDEE",
+            "companyIdentification": "1022337788",
+            "serviceClassCode": "200",
+            "standardEntryClassCode": "MTE",
+            "companyDiscretionaryData": "NA",
+            "companyEntryDescription": "Accounting",
+            "companyDescriptiveDate": "",
+            "effectiveEntryDate":  Moment().toDate(),
+            "originatingDFI": "121042882",
+            "entryChildren": [{
+                "id": 20514,
+                "transactionCode": "27",
+                "receivingDFI": "011002725",
+                "DFIAccount": "12345678",
+                "amount": "1000",
+                "idNumber": "ICICI Bank     ",
+                "individualName": "45678654              ",
+                "discretionaryData": "21",
+                "transactionType": "Debit",
+                "addendaRecords": [{
+                    "id": 204,
+                    "queued_transaction_id": 20514,
+                    "addenda_type_code": "02",
+                    "payment_related_information": "This is211TERM021000490614101010Target Store 0049          ANYTOWN        VA",
+                    "ach_return_code": null,
+                    "original_entry_trace_number": null,
+                    "date_of_death": null,
+                    "created_at": "2023-12-04 13:01:15",
+                    "modified_at": "2023-12-04 13:01:15"
+                }]
+            }]
+        }],
+        "recordCount": 1,
+        "fileCharCount": "PHIN"
+    }]
+    describe('Generate MTE ACH File', async function () {
+        it('should create an MTE ACH file successfully', function (done) {
+            GenerateAchFile(MTERecords, './test/ach_file','MTE_').then((result) => {
+                expect(result.error).to.equal(false);
+                expect(result.message).to.equal('Successfully writing file.');
+                return done()
+            }).catch(error => {
+                console.log('===========', error)
+                expect(true).to.be.false;
+                expect(error.message).to.equal('Successfully writing file.');
+                return done();
+            })
+        }).timeout(10000);
+    })
 });

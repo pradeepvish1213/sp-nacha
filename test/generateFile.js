@@ -58,12 +58,13 @@ let dataAddenda = [{
 }]
 
 
-async function GenerateAchFile(queuedTransaction = [], fileFullPath = './') {
+async function GenerateAchFile(queuedTransaction = [], fileFullPath = './', prefix = '') {
     return new Promise((resolve, reject) => {
         let totalRunsFile = [];
         queuedTransaction = queuedTransaction.length > 0 ? queuedTransaction : dataAddenda;
         queuedTransaction.forEach(({batchChildren, id, ...restField}) => {
             try {
+                let standardEntryClassCode = restField.standardEntryClassCode
                 let Nacha2AimPointFile = new NachaAimPoint.File(restField);
                 let totalBatchNumber = batchChildren.length;
                 let totalCreditAmount = 0
@@ -85,7 +86,7 @@ async function GenerateAchFile(queuedTransaction = [], fileFullPath = './') {
                                 addendaRecords.forEach(addenda => {
                                     let addendaEntry = new NachaAimPoint.EntryAddenda({
                                         paymentRelatedInformation: addenda.payment_related_information
-                                    });
+                                    }, standardEntryClassCode);
                                     entryRecord.addAddenda(addendaEntry);
                                 })
                             }
@@ -101,7 +102,7 @@ async function GenerateAchFile(queuedTransaction = [], fileFullPath = './') {
                         return reject({row_id: id, message: e.message, error: true})
                     }
                 })
-                let fileName = `ACH${restField.immediateOrigin}PEIN${Moment().format('YYYYMMDDHHmmssSS')}.ach`;
+                let fileName = `${prefix}ACH${restField.immediateOrigin}PEIN${Moment().format('YYYYMMDDHHmmssSS')}.ach`;
                 if (successRecords.length > 0) {
                     Nacha2AimPointFile.generateFile(function (result) {
                         FS.writeFile(path.join(fileFullPath, fileName), result, function (error) {
