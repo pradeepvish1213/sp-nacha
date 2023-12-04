@@ -4,67 +4,59 @@ const FS = require('fs')
 const NachaAimPoint = require('../index')
 
 let dataAddenda = [{
-    "id": 1,
+    "id": 20513,
+    "standardEntryClassCode": "COR",
     "immediateDestination": "011002725",
-    "immediateOrigin": "011001726",
+    "immediateOrigin": "121042882",
     "immediateDestinationName": "BERKSHIRE BANK",
-    "immediateOriginName": "BROOKLINE BANK",
-    "standardEntryClassCode": "IAT",
+    "immediateOriginName": "WELLS FARGO BANK NA",
     "referenceCode": " ",
     "batchChildren": [{
-        "id": 1,
-        "companyName": "FF4 US",
-        "companyIdentification": "0",
-        "serviceClassCode": "220",
-        "standardEntryClassCode": "IAT",
+        "id": 20513,
+        "companyName": "Company Name, In",
+        "companyIdentification": "1022337788",
+        "serviceClassCode": "200",
+        "standardEntryClassCode": "COR",
         "companyDiscretionaryData": "FF4 US",
-        "companyEntryDescription": "NA",
-        "companyDescriptiveDate": '2023-08-30 05:30:00',
-        "effectiveEntryDate": Moment('2023-08-30 05:30:00').toDate(),
-        "settlementDate": "2023-09-15 05:30:00",
-        "originatingDFI": "011001726",
+        "companyEntryDescription": "Accounting",
+        "companyDescriptiveDate": "",
+        "effectiveEntryDate": Moment("2023-10-25T00:00:00.000Z").toDate(),
+        "originatingDFI": "121042882",
         "entryChildren": [{
-            "id": 1,
+            "id": 20513,
+            "transactionCode": "23",
             "receivingDFI": "011002725",
-            "DFIAccount": "2234532",
-            "amount": "1000",
-            "idNumber": "",
-            "individualName": "Sandeep",
-            "discretionaryData": " ",
-            "transactionCode": "22",
+            "DFIAccount": "12345678",
+            "amount": "0",
+            "idNumber": "45678654",
+            "individualName": "0002Third Receiv",
+            "discretionaryData": "21",
             "transactionType": "Credit",
             "addendaRecords": [{
-                "payment_related_information": "ANN000000000000100000928383-23939 XYZ Enterprises"
-            }, {
-                "payment_related_information": "XYZ Solutions 15 East Place Street"
-            }, {
-                "payment_related_information": "SmithTown*PA\\ US*19306\\"
-            }, {
-                "payment_related_information": "Citibank 01231380104 US"
-            }, {
-                "payment_related_information": "Standard Bank 01121042882 CA"
-            }, {
-                "payment_related_information": "9874654932139872122 Front Street"
-            }, {
-                "payment_related_information": "BetterTown*AB\\ CA*80015\\"
-            }, {
-                "payment_related_information": "Another international payment"
-            }, {
-                "payment_related_information": "Bank of Canada 01456456456987988 CA"
+                "id": 203,
+                "queued_transaction_id": 20513,
+                "addenda_type_code": "98",
+                "payment_related_information": "C01this is demo check by pradeep",
+                "ach_return_code": null,
+                "original_entry_trace_number": null,
+                "date_of_death": null,
+                "created_at": "2023-12-01 13:13:14",
+                "modified_at": "2023-12-01 13:13:14"
             }]
         }]
     }],
-    "recordCount": 1
+    "recordCount": 1,
+    "fileCharCount": "PCIN"
 }]
 
 
-async function GenerateAchFile(queuedTransaction = [], fileFullPath = './') {
+async function GenerateNotificationAchFile(queuedTransaction = [], fileFullPath = './') {
     return new Promise((resolve, reject) => {
         let totalRunsFile = [];
         queuedTransaction = queuedTransaction.length > 0 ? queuedTransaction : dataAddenda;
-        queuedTransaction.forEach(({batchChildren, id, ...restField}) => {
+        queuedTransaction.forEach(({batchChildren, id, ...restFieldFile}) => {
             try {
-                let Nacha2AimPointFile = new NachaAimPoint.File(restField);
+                let Nacha2AimPointFile = new NachaAimPoint.File(restFieldFile);
                 let totalBatchNumber = batchChildren.length;
                 let totalCreditAmount = 0
                 let totalDebitAmount = 0;
@@ -83,10 +75,25 @@ async function GenerateAchFile(queuedTransaction = [], fileFullPath = './') {
                             let entryRecord = new NachaAimPoint.Entry(entry);
                             if (addendaRecords && addendaRecords.length > 0) {
                                 addendaRecords.forEach(addenda => {
-                                    let addendaEntry = new NachaAimPoint.EntryAddenda({
-                                        paymentRelatedInformation: addenda.payment_related_information
-                                    });
-                                    entryRecord.addAddenda(addendaEntry);
+                                    if (addenda.addenda_type_code === '98') {
+                                        console.log('addenda.payment_related_information.slice(3)',addenda.payment_related_information.slice(3))
+                                        let object = {
+                                            addendaTypeCode: addenda.addenda_type_code,
+                                            changeCode: addenda.payment_related_information.slice(0, 3),
+                                            originalEntryTraceNumber: '210121042880000',
+                                            originalReceivingDFI: restFieldFile.immediateDestination,
+                                            correctedData: addenda.payment_related_information.slice(3)
+                                        }
+                                        let addendaEntry = new NachaAimPoint.NotificationEntryAddenda(object);
+                                        entryRecord.addReturnAddenda(addendaEntry);
+                                    } else {
+                                        let object = {
+                                            addendaTypeCode: addenda.addenda_type_code,
+                                            paymentRelatedInformation: addenda.payment_related_information
+                                        }
+                                        let addendaEntry = new NachaAimPoint.EntryAddenda(object);
+                                        entryRecord.addAddenda(addendaEntry);
+                                    }
                                 })
                             }
                             batch.addEntry(entryRecord);
@@ -101,7 +108,7 @@ async function GenerateAchFile(queuedTransaction = [], fileFullPath = './') {
                         return reject({row_id: id, message: e.message, error: true})
                     }
                 })
-                let fileName = `ACH${restField.immediateOrigin}PEIN${Moment().format('YYYYMMDDHHmmssSS')}.ach`;
+                let fileName = `NOTIFICATION_ACH${restFieldFile.immediateOrigin}PEIN${Moment().format('YYYYMMDDHHmmssSS')}.ach`;
                 if (successRecords.length > 0) {
                     Nacha2AimPointFile.generateFile(function (result) {
                         FS.writeFile(path.join(fileFullPath, fileName), result, function (error) {
@@ -149,4 +156,4 @@ async function GenerateAchFile(queuedTransaction = [], fileFullPath = './') {
     })
 }
 
-module.exports = {GenerateAchFile}
+module.exports = {GenerateNotificationAchFile}

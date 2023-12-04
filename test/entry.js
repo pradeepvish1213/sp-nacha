@@ -6,6 +6,7 @@ let chai = require('chai')
     , {GenerateAchFile} = require('./generateFile')
     , Moment = require('moment')
 const {GenerateReturnAchFile} = require("./generateReturnACHFile");
+const {GenerateNotificationAchFile} = require("./generate98AddendaACHFile");
 describe('Entry', function () {
     describe('Create Entry', function () {
         it('should create an entry successfully', function () {
@@ -130,6 +131,20 @@ describe('Entry', function () {
                 return done()
             }).catch(error => {
                 console.log('==Return ACH=========', error)
+                expect(true).to.be.false;
+                expect(error.message).to.equal('Successfully writing file.');
+                return done();
+            })
+        }).timeout(10000);
+    })
+    describe('Generate Notification addenda ACH File', async function () {
+        it('should create an Notification ACH file successfully', function (done) {
+            GenerateNotificationAchFile([], './test/ach_file').then((result) => {
+                expect(result.error).to.equal(false);
+                expect(result.message).to.equal('Successfully writing file.');
+                return done()
+            }).catch(error => {
+                console.log('==Notification Addenda ACH=========', error)
                 expect(true).to.be.false;
                 expect(error.message).to.equal('Successfully writing file.');
                 return done();

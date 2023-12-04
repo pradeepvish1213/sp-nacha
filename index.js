@@ -8,3 +8,4 @@ module.exports.Utils = require('./lib/utils');
 module.exports.Validate = require('./lib/validate');
 module.exports.EntryAddenda = require('./lib/entry-addenda');
 module.exports.ReturnEntryAddenda = require('./lib/entry-addenda-return');
+module.exports.NotificationEntryAddenda = require('./lib/entry-addenda-notification');
