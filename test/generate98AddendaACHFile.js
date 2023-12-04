@@ -36,12 +36,7 @@ let dataAddenda = [{
                 "id": 203,
                 "queued_transaction_id": 20513,
                 "addenda_type_code": "98",
-                "payment_related_information": "C01this is demo check by pradeep",
-                "ach_return_code": null,
-                "original_entry_trace_number": null,
-                "date_of_death": null,
-                "created_at": "2023-12-01 13:13:14",
-                "modified_at": "2023-12-01 13:13:14"
+                "payment_related_information": "C01this is demo check by pradeep"
             }]
         }]
     }],
