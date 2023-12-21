@@ -22,6 +22,7 @@ let dataAddenda = [{
         "companyDescriptiveDate": "",
         "effectiveEntryDate": Moment("2023-10-25T00:00:00.000Z").toDate(),
         "originatingDFI": "121042882",
+        "messageAuthenticationCode": "QhBamz2BmF534MlVROX",
         "entryChildren": [{
             "id": 20513,
             "transactionCode": "23",

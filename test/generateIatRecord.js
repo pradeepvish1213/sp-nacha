@@ -34,6 +34,7 @@ let queuedTransaction = [
                 "companyDescriptiveDate": "",
                 "effectiveEntryDate": Moment().toDate(),
                 "originatingDFI": "121042882",
+                "messageAuthenticationCode": "QhBamz2BmF534MlVROX",
                 "entryChildren": [
                     {
                         "id": 97,
@@ -166,7 +167,7 @@ describe('IAT Records', function () {
     });
     // describe('Create IAT Entry with addenda', function () {
     //     it('should create an entry with an addenda successfully', function () {
-    //         let entry = new NachaAimPoint.EntryIAT(queuedTransaction[0].batchChildren[0].entryChildren[0]);
+//             let entry = new NachaAimPoint.EntryIAT(queuedTransaction[0].batchChildren[0].entryChildren[0]);
     //         let addenda = new EntryAddenda(queuedTransaction[0].batchChildren[0].entryChildren[0].addendaRecords);
     //         expect(entry.getRecordCount()).to.equal(1);
     //         entry.addAddenda(addenda);
@@ -180,11 +181,11 @@ describe('IAT Records', function () {
     //         expect(entry.getRecordCount()).to.equal(3);
     //         expect(addenda.get('addendaSequenceNumber')).to.equal(1);
     //         expect(addenda.get('entryDetailSequenceNumber')).to.equal('1234567');
-    //         entry.generateString(function (string) {
-    //             console.log(string);
-    //         });
-    //     });
-    // });
+//             entry.generateString(function (string) {
+//                 console.log(string);
+//             });
+//         });
+//     });
 
     describe('Create IAT Entry', function () {
         it('should create an IAT entry successfully', function () {

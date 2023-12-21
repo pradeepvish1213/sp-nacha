@@ -23,6 +23,7 @@ let dataAddenda = [{
         "effectiveEntryDate": Moment('2023-08-30 05:30:00').toDate(),
         "settlementDate": "2023-09-15 05:30:00",
         "originatingDFI": "011001726",
+        "messageAuthenticationCode": "QhBamz2BmF534MlVROX",
         "entryChildren": [{
             "id": 1,
             "receivingDFI": "011002725",
